@@ -10,7 +10,14 @@
     "test-api": "./test-api.sh",
     "deploy": "npm run setup-db && npm start"
   },
-  "keywords": ["lead-scoring", "ai", "backend", "nodejs", "gemini", "crm"],
+  "keywords": [
+    "lead-scoring",
+    "ai",
+    "backend",
+    "nodejs",
+    "gemini",
+    "crm"
+  ],
   "author": "Subhajit",
   "license": "MIT",
   "type": "commonjs",
@@ -20,7 +27,6 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "multer": "^2.0.2",
-    "openai": "^5.20.3",
     "pg": "^8.16.3"
   }
 }
