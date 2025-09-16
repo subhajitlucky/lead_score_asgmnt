@@ -1,17 +1,18 @@
 {
   "name": "lead_score_asgmnt",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "AI-powered lead scoring backend with Google Gemini integration",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "node server.js",
-    "setup-db": "node schema.js"
+    "setup-db": "node schema.js",
+    "test-api": "./test-api.sh",
+    "deploy": "npm run setup-db && npm start"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["lead-scoring", "ai", "backend", "nodejs", "gemini", "crm"],
+  "author": "Subhajit",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
