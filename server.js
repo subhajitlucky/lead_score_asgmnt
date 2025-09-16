@@ -335,10 +335,61 @@ app.get('/results', async (req, res) => {
     }
 });
 
-//starting the server
-app.listen(PORT,
-    () => {
-        console.log(`Server is running on port ${PORT}`);
+// Function to initialize database tables on startup (for production)
+async function initializeDatabase() {
+    try {
+        // Create offers table (matching schema.js)
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS offers (
+                id SERIAL PRIMARY KEY,
+                name TEXT NOT NULL,
+                value_props TEXT[],
+                ideal_use_cases TEXT[],
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        `);
+
+        // Create leads table (matching schema.js exactly)
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS leads (
+                id SERIAL PRIMARY KEY,
+                name TEXT NOT NULL,
+                role TEXT,
+                company TEXT,
+                industry TEXT,
+                location TEXT,
+                linkedin_bio TEXT,
+                rule_score INT DEFAULT 0,
+                ai_score INT DEFAULT 0,
+                final_score INT DEFAULT 0,
+                intent TEXT,
+                reasoning TEXT,
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        `);
+
+        console.log('Database tables initialized successfully');
+    } catch (error) {
+        console.error('Database initialization error:', error);
     }
-)
+}
+
+//starting the server with database initialization
+async function startServer() {
+    try {
+        // Initialize database tables FIRST
+        await initializeDatabase();
+        
+        // Then start the server
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error('Failed to start server:', error);
+        process.exit(1);
+    }
+}
+
+// Start the server
+startServer();
 
