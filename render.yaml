@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: lead-score-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lead-score-db
+          property: connectionString
+      - key: GEMINI_API_KEY
+        sync: false
+
+databases:
+  - name: lead-score-db
+    databaseName: lead_score_asgmnt_db
+    user: lead_score_asgmnt_db_user

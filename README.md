@@ -2,7 +2,7 @@
 
 A powerful backend service that uses **AI + Rule-based logic** to score lead buying intent for any product/offer. Built with Node.js, PostgreSQL, and Google Gemini AI.
 
-## 🚀 Features
+## 🚀 Featu**🔗 Base URL:** `https://lead-score-asgmnt.onrender.com`es
 
 - **Smart Lead Scoring**: Combines rule-based logic (50 points) + AI analysis (50 points)
 - **CSV Upload**: Bulk upload leads from CSV files
@@ -207,13 +207,39 @@ lead_score_asgmnt/
 - Graceful AI fallback scoring
 - Input validation and sanitization
 
-## 🚀 Deployment
+## 🌐 Live API
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions to:
-- Railway
-- Render  
-- Heroku
+**� Base URL:** `https://lead-score-backend.onrender.com`
+
+Test the live API:
+```bash
+# Health check
+curl https://lead-score-asgmnt.onrender.com/health
+
+# Upload leads
+curl -X POST https://lead-score-asgmnt.onrender.com/leads/upload \
+     -F "file=@sample_leads.csv"
+
+# Score leads  
+curl -X POST https://lead-score-asgmnt.onrender.com/score
+
+# Get results
+curl https://lead-score-asgmnt.onrender.com/results
+```
+
+> **Note:** Free tier services may have cold starts (15-30 seconds) after inactivity.
+
+## �🚀 Deployment
+
+**Recommended:** [Render.com](https://render.com) (Free PostgreSQL + Web Service)
+
+See [RENDER_DEPLOY.md](./RENDER_DEPLOY.md) for step-by-step Render deployment.
+
+Alternative platforms in [DEPLOYMENT.md](./DEPLOYMENT.md):
+- Railway (ended free tier)
+- Heroku  
 - Vercel
+- Fly.io
 
 ## 🧪 Testing
 
